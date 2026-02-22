@@ -4,7 +4,9 @@ const axios = require("axios");
 const app = express();
 app.use(express.json());
 
+// Railway environment variable
 const SECRET = process.env.SECRET_KEY;
+const PORT = process.env.PORT || 3000; // Railway PORT değişkenini kullan
 
 app.post("/proxy", async (req, res) => {
   try {
@@ -31,6 +33,6 @@ app.post("/proxy", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Proxy running");
+app.listen(PORT, () => {
+  console.log(`Proxy running on port ${PORT}`);
 });
