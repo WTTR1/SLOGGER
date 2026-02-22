@@ -4,29 +4,26 @@ const axios = require("axios");
 const app = express();
 app.use(express.json());
 
-// Railway environment variables
-const SECRET = process.env.SECRET_KEY;
-const API_KEY = process.env.API_KEY;       // LeakCheck API Key
-const API_URL = process.env.API_URL;       // LeakCheck API endpoint
+// Environment Variables
+const SECRET = process.env.SECRET_KEY;   // Roblox ile doğrulama
+const API_URL = process.env.API_URL;      // https://leakcheck.io/mass
 const PORT = process.env.PORT || 3000;
 
 app.post("/proxy", async (req, res) => {
   try {
     const { secret, query } = req.body;
 
-    // SECRET_KEY doğrulaması
+    // Sadece yetkili Roblox script’i geçer
     if (secret !== SECRET) {
       return res.status(403).json({ error: "Unauthorized" });
     }
 
-    // LeakCheck API çağrısı
-    const response = await axios.get(`${API_URL}?query=${encodeURIComponent(query)}`, {
-      headers: {
-        "Authorization": `Bearer ${API_KEY}`
-      }
+    // LeakCheck /mass endpoint’ine POST
+    const response = await axios.post(API_URL, {
+      email: query
     });
 
-    // Sonucu Roblox’a geri gönder
+    // Yanıtı Roblox’a geri gönder
     res.json(response.data);
 
   } catch (err) {
