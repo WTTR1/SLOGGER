@@ -1,7 +1,7 @@
 {
   "name": "slogger-proxy",
   "version": "1.0.0",
-  "description": "Roblox proxy server for LeakCheck API",
+  "description": "Roblox proxy server for LeakCheck /mass endpoint",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
