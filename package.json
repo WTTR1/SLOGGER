@@ -1,7 +1,7 @@
 {
-  "name": "proxy-server",
+  "name": "slogger-proxy",
   "version": "1.0.0",
-  "description": "Express + Axios Proxy Server for Railway",
+  "description": "Roblox proxy server for LeakCheck API",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
